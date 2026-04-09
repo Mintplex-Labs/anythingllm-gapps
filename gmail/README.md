@@ -2,6 +2,39 @@
 
 A Google Apps Script that enables AnythingLLM to read and send emails via Gmail.
 
+> [!IMPORTANT]
+> [GMail quotas](https://developers.google.com/apps-script/guides/services/quotas) should be very generous for most users using this bridge for **personal use only**. If you are using this bridge for commercial use, you should contact us for Enterprise support or a commercial license to support that.
+
+## Features
+
+### Search & Read
+- Search emails using Gmail query syntax (inbox, starred, spam, trash, etc.)
+- Read full email threads with all messages
+- Read individual messages by ID
+- Attachments returned as base64-encoded data
+
+### Send & Reply
+- Send emails immediately (with optional attachments)
+- Reply to threads (single recipient or reply-all)
+
+### Draft Management
+- Create, update, and delete drafts
+- Create draft replies to existing threads
+- List all drafts
+- Send drafts
+
+### Thread Management
+- Mark threads as read/unread
+- Move threads to trash, archive, or inbox
+
+### Labels
+- List all user labels with unread counts
+- Add/remove labels from threads
+
+### Account
+- Get mailbox stats (unread counts for inbox, priority, starred, spam)
+- Check API version and available actions and quotas
+
 ## Quick Setup (5 minutes)
 
 1. **Create a new Google Apps Script project**
