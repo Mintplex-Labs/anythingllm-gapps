@@ -66,11 +66,6 @@ const API_KEY = "CHANGE_ME_TO_SOMETHING_SECURE";
  *   move_to_archive     - Archive a thread
  *   move_to_inbox       - Move a thread to inbox
  *
- * LABELS
- *   list_labels         - List all user labels
- *   add_label           - Add a label to a thread
- *   remove_label        - Remove a label from a thread
- *
  * ACCOUNT
  *   get_mailbox_stats   - Unread counts for inbox, priority, starred, spam
  *   version             - API version info
@@ -174,7 +169,7 @@ function threadSummary(t) {
 }
 
 /**
- * Full thread detail — includes messages and labels.
+ * Full thread detail — includes messages.
  */
 function threadDetail(t) {
   const messages = t.getMessages();
@@ -191,7 +186,6 @@ function threadDetail(t) {
     isInTrash: t.isInTrash(),
     isInPriorityInbox: t.isInPriorityInbox(),
     hasStarredMessages: t.hasStarredMessages(),
-    labels: t.getLabels().map((l) => l.getName()),
     messages: messages.map(serializeMessage),
   };
 }
@@ -441,37 +435,6 @@ class MailManager {
     return { threadId, movedToInbox: true };
   }
 
-  /* ──────────── LABELS ──────────── */
-
-  listLabels() {
-    return GmailApp.getUserLabels().map((l) => ({
-      name: l.getName(),
-      unreadCount: l.getUnreadCount(),
-    }));
-  }
-
-  addLabel(threadId, labelName) {
-    if (!threadId || !labelName)
-      throw new Error("'threadId' and 'labelName' are required");
-    const thread = GmailApp.getThreadById(threadId);
-    if (!thread) throw new Error(`Thread not found: ${threadId}`);
-    const label = GmailApp.getUserLabelByName(labelName);
-    if (!label) throw new Error(`Label not found: ${labelName}`);
-    thread.addLabel(label);
-    return { threadId, labelAdded: labelName };
-  }
-
-  removeLabel(threadId, labelName) {
-    if (!threadId || !labelName)
-      throw new Error("'threadId' and 'labelName' are required");
-    const thread = GmailApp.getThreadById(threadId);
-    if (!thread) throw new Error(`Thread not found: ${threadId}`);
-    const label = GmailApp.getUserLabelByName(labelName);
-    if (!label) throw new Error(`Label not found: ${labelName}`);
-    thread.removeLabel(label);
-    return { threadId, labelRemoved: labelName };
-  }
-
   /* ──────────── ACCOUNT ──────────── */
 
   getMailboxStats() {
@@ -581,18 +544,6 @@ function doPost(e) {
       case "move_to_inbox":
         return createResponse(ok(m.moveToInbox(payload.threadId)));
 
-      /* ── Labels ── */
-      case "list_labels":
-        return createResponse(ok(m.listLabels()));
-      case "add_label":
-        return createResponse(
-          ok(m.addLabel(payload.threadId, payload.labelName)),
-        );
-      case "remove_label":
-        return createResponse(
-          ok(m.removeLabel(payload.threadId, payload.labelName)),
-        );
-
       /* ── Account ── */
       case "get_mailbox_stats":
         return createResponse(ok(m.getMailboxStats()));
@@ -618,9 +569,6 @@ function doPost(e) {
               "move_to_trash",
               "move_to_archive",
               "move_to_inbox",
-              "list_labels",
-              "add_label",
-              "remove_label",
               "get_mailbox_stats",
               "version",
             ],

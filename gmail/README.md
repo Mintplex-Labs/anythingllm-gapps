@@ -27,10 +27,6 @@ A Google Apps Script that enables AnythingLLM to read and send emails via Gmail.
 - Mark threads as read/unread
 - Move threads to trash, archive, or inbox
 
-### Labels
-- List all user labels with unread counts
-- Add/remove labels from threads
-
 ### Account
 - Get mailbox stats (unread counts for inbox, priority, starred, spam)
 - Check API version and available actions and quotas
