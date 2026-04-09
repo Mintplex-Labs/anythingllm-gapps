@@ -88,7 +88,6 @@ When you authorize the script, it requests these Gmail permissions:
 |------------|-----------------|
 | Read emails | Search, read threads and messages |
 | Send emails | Send new emails and replies |
-| Manage labels | List, add, and remove labels |
 | Manage drafts | Create, update, and send drafts |
 
 The script has **full access to your Gmail**. Only deploy if you trust the code.
@@ -108,7 +107,7 @@ The URL stays the same.
 ## Development (for contributors)
 
 ### Prerequisites
-- Node 22+ (`nvm use`)
+- Node 22
 - [Enable Apps Script API](https://script.google.com/u/1/home/usersettings)
 
 ### Setup
