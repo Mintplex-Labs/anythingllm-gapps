@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "checkJs": true,
+    "types": ["google-apps-script"]
+  },
+  "include": ["*.gs"],
+  "exclude": ["node_modules"]
+}

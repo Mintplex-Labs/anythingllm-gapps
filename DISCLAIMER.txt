@@ -1,0 +1,80 @@
+LEGAL DISCLAIMER
+
+Copyright (c) Mintplex Labs Inc.
+
+This software is provided "as is", without warranty of any kind, express or
+implied, including but not limited to the warranties of merchantability,
+fitness for a particular purpose, and noninfringement. In no event shall
+Mintplex Labs Inc., its affiliates, subsidiaries, officers, directors,
+employees, agents, or any associated entities be liable for any claim,
+damages, or other liability, whether in an action of contract, tort, or
+otherwise, arising from, out of, or in connection with the software or the
+use or other dealings in the software.
+
+LIMITATION OF LIABILITY
+
+Mintplex Labs Inc. and its associated entities shall not be held responsible
+for any direct, indirect, incidental, special, exemplary, or consequential
+damages including, but not limited to:
+
+- Loss of data or information
+- Loss of profits or revenue
+- Business interruption
+- Loss of goodwill
+- Personal injury
+- Property damage
+- Any other commercial or personal damages
+
+arising from the use or inability to use this software, even if Mintplex Labs
+Inc. has been advised of the possibility of such damages.
+
+ASSUMPTION OF RISK
+
+By using this software, you acknowledge and agree that:
+
+1. You do so entirely at your own risk.
+2. You are solely responsible for any consequences that may arise from such use.
+3. You have read and understood this disclaimer.
+4. You waive any claims against Mintplex Labs Inc. and its associated entities
+   related to your use of this software.
+
+DATA AND PRIVACY
+
+This software may access, process, or transmit personal data and email content.
+Mintplex Labs Inc. is not responsible for:
+
+- Unauthorized access to your data
+- Data breaches or security incidents
+- Loss or corruption of emails, attachments, or other information
+- Any misuse of data by third parties
+- Compliance with data protection regulations in your jurisdiction
+
+Users are solely responsible for ensuring their use of this software complies
+with all applicable laws, regulations, and terms of service of third-party
+platforms (including Google's Terms of Service).
+
+NO PROFESSIONAL ADVICE
+
+This software does not constitute legal, financial, or professional advice.
+Consult appropriate professionals before making decisions based on information
+processed by this software.
+
+INDEMNIFICATION
+
+You agree to indemnify, defend, and hold harmless Mintplex Labs Inc. and its
+associated entities from any claims, liabilities, damages, losses, and expenses
+arising from your use of this software.
+
+GOVERNING LAW
+
+This disclaimer shall be governed by and construed in accordance with applicable
+laws, without regard to conflict of law principles.
+
+CONTACT
+
+For questions regarding this disclaimer, please contact Mintplex Labs Inc.
+
+--------------------------------------------------------------------------------
+This disclaimer applies to all components of the AnythingLLM Google Apps Script
+integrations, including but not limited to Gmail, Calendar, and Drive bridges.
+--------------------------------------------------------------------------------
