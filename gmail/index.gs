@@ -40,7 +40,6 @@ const API_KEY = "CHANGE_ME_TO_SOMETHING_SECURE";
  *   search              - Search emails using Gmail query syntax
  *                         (use queries like "is:inbox", "is:starred", "is:spam", "in:trash", "is:important")
  *   read_thread         - Read full thread by ID (includes attachments as base64)
- *   read_message        - Read a single message by ID (includes attachments as base64)
  *
  * DRAFTS
  *   create_draft        - Create a new draft email (supports attachments)
@@ -319,13 +318,6 @@ class MailManager {
     return threadDetail(thread);
   }
 
-  readMessage(messageId) {
-    if (!messageId) throw new Error("'messageId' is required");
-    const msg = GmailApp.getMessageById(messageId);
-    if (!msg) throw new Error(`Message not found: ${messageId}`);
-    return serializeMessage(msg);
-  }
-
   /* ──────────── DRAFT MANAGEMENT ──────────── */
 
   createDraft(to, subject, body, opts) {
@@ -501,8 +493,6 @@ function doPost(e) {
         );
       case "read_thread":
         return createResponse(ok(m.readThread(payload.threadId)));
-      case "read_message":
-        return createResponse(ok(m.readMessage(payload.messageId)));
 
       /* ── Drafts ── */
       case "create_draft":
@@ -580,7 +570,6 @@ function doPost(e) {
             availableActions: [
               "search",
               "read_thread",
-              "read_message",
               "create_draft",
               "create_draft_reply",
               "update_draft",
