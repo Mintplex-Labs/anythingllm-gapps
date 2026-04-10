@@ -71,7 +71,7 @@ const API_KEY = "CHANGE_ME_TO_SOMETHING_SECURE";
  *   version             - API version info
  */
 
-const VERSION = "2.0.0";
+const VERSION = "1.0.0";
 
 const MAX_SEARCH_RESULTS = 50;
 const MAX_DRAFT_LIST = 100;
@@ -190,6 +190,31 @@ function threadDetail(t) {
   };
 }
 
+const ATTACHMENT_WHITELIST = [
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.ms-excel",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "application/vnd.ms-powerpoint",
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  "application/vnd.oasis.opendocument.text",
+  "application/vnd.oasis.opendocument.presentation",
+  "application/json",
+  "application/epub+zip",
+  "application/mbox",
+  "text/plain",
+  "text/html",
+  "text/csv",
+];
+
+function isAttachmentAllowed(att) {
+  const contentType = att.getContentType();
+  return ATTACHMENT_WHITELIST.some((allowed) =>
+    contentType.startsWith(allowed),
+  );
+}
+
 function serializeAttachment(att) {
   return {
     name: att.getName(),
@@ -201,7 +226,7 @@ function serializeAttachment(att) {
 }
 
 function serializeMessage(m) {
-  const attachments = m.getAttachments();
+  const attachments = m.getAttachments().filter(isAttachmentAllowed);
   return {
     id: m.getId(),
     threadId: m.getThread().getId(),
@@ -461,7 +486,8 @@ function doPost(e) {
   const action = payload.action;
   logRequest(action);
 
-  if (!validateApiKey(payload)) return createResponse(fail("Unauthorized", false));
+  if (!validateApiKey(payload))
+    return createResponse(fail("Unauthorized", false));
 
   const m = new MailManager();
   const opts = buildEmailOptions(payload);
